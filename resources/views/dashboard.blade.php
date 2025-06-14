@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    Vehicle Management System - Dashboard
-@endsection
+@section('title', 'Vehicle Management System - Dashboard')
 
 @section('content')
     <main class="flex-1 overflow-y-auto bg-gray-100 p-4">
@@ -22,12 +20,8 @@
                     </div>
                     <div class="ml-5">
                         <p class="text-sm font-medium text-gray-500">Semua Reservasi</p>
-                        <p class="text-xl font-semibold text-gray-800">128</p>
+                        <p class="text-xl font-semibold text-gray-800">{{ $totalReservations }}</p>
                     </div>
-                </div>
-                <div class="mt-2 text-xs text-green-600 flex items-center">
-                    <i class="fas fa-arrow-up mr-1"></i>
-                    <span>4.75% kenaikan</span>
                 </div>
             </div>
 
@@ -38,12 +32,8 @@
                     </div>
                     <div class="ml-5">
                         <p class="text-sm font-medium text-gray-500">Total Pending</p>
-                        <p class="text-xl font-semibold text-gray-800">42</p>
+                        <p class="text-xl font-semibold text-gray-800">{{ $totalPending }}</p>
                     </div>
-                </div>
-                <div class="mt-2 text-xs text-yellow-600 flex items-center">
-                    <i class="fas fa-arrow-right mr-1"></i>
-                    <span>10% kenaikan</span>
                 </div>
             </div>
 
@@ -54,12 +44,8 @@
                     </div>
                     <div class="ml-5">
                         <p class="text-sm font-medium text-gray-500">Total Disetujui</p>
-                        <p class="text-xl font-semibold text-gray-800">89</p>
+                        <p class="text-xl font-semibold text-gray-800">{{ $totalApproved }}</p>
                     </div>
-                </div>
-                <div class="mt-2 text-xs text-green-600 flex items-center">
-                    <i class="fas fa-arrow-up mr-1"></i>
-                    <span>7.5% kenaikan</span>
                 </div>
             </div>
 
@@ -70,12 +56,8 @@
                     </div>
                     <div class="ml-5">
                         <p class="text-sm font-medium text-gray-500">Total Ditolak</p>
-                        <p class="text-xl font-semibold text-gray-800">12</p>
+                        <p class="text-xl font-semibold text-gray-800">{{ $totalRejected }}</p>
                     </div>
-                </div>
-                <div class="mt-2 text-xs text-red-600 flex items-center">
-                    <i class="fas fa-arrow-down mr-1"></i>
-                    <span>5% penurunan</span>
                 </div>
             </div>
         </div>
@@ -127,119 +109,151 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
-                                            JP
+                            @foreach ($recentReservations as $reservation)
+                                <tr>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div
+                                                class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
+                                                {{ strtoupper(substr($reservation->driver->name ?? 'X', 0, 2)) }}
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-800">
+                                                    {{ $reservation->driver->name ?? '-' }}</p>
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="ml-3">
-                                            <p class="text-sm font-medium text-gray-800">Joni Pratama</p>
-                                            <p class="text-xs text-gray-500">Lokasi Tambang B</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <p class="text-sm text-gray-800">Truk Tambang A</p>
-                                    <p class="text-xs text-gray-500">B 1234 KLM</p>
-                                </td>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <p class="text-sm text-gray-800">24 Jun 2025</p>
-                                    <p class="text-xs text-gray-500">08:00 - 16:00</p>
-                                </td>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <span class="px-2 py-1 text-xs font-medium rounded-full bg-amber-100 text-amber-800">
-                                        Menunggu Persetujuan
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
-                                            SM
-                                        </div>
-                                        <div class="ml-3">
-                                            <p class="text-sm font-medium text-gray-800">Mulyono</p>
-                                            <p class="text-xs text-gray-500">Kantor Pusat</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <p class="text-sm text-gray-800">Truk Tambang B</p>
-                                    <p class="text-xs text-gray-500">B 5678 ABC</p>
-                                </td>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <p class="text-sm text-gray-800">23 Jun 2025</p>
-                                    <p class="text-xs text-gray-500">09:30 - 17:30</p>
-                                </td>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
-                                        Disetujui
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
-                                            DC
-                                        </div>
-                                        <div class="ml-3">
-                                            <p class="text-sm font-medium text-gray-800">Dimas Cahyadi</p>
-                                            <p class="text-xs text-gray-500">Kantor Cabang</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <p class="text-sm text-gray-800">Truk Tambang C</p>
-                                    <p class="text-xs text-gray-500">B 9012 DEF</p>
-                                </td>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <p class="text-sm text-gray-800">22 Jun 2025</p>
-                                    <p class="text-xs text-gray-500">07:00 - 19:00</p>
-                                </td>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
-                                        Disetujui
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
-                                            AK
-                                        </div>
-                                        <div class="ml-3">
-                                            <p class="text-sm font-medium text-gray-800">Tono</p>
-                                            <p class="text-xs text-gray-500">Lokasi Tambang A</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <p class="text-sm text-gray-800">Truk Tambang D</p>
-                                    <p class="text-xs text-gray-500">B 3456 GHI</p>
-                                </td>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <p class="text-sm text-gray-800">21 Jun 2025</p>
-                                    <p class="text-xs text-gray-500">08:30 - 14:30</p>
-                                </td>
-                                <td class="px-4 py-3 whitespace-nowrap">
-                                    <span class="px-2 py-1 text-xs font-medium rounded-full bg-red-100 text-red-800">
-                                        Ditolak
-                                    </span>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <p class="text-sm text-gray-800">{{ $reservation->vehicle->name ?? '-' }}</p>
+                                        <p class="text-xs text-gray-500">{{ $reservation->vehicle->plate_number ?? '-' }}
+                                        </p>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <p class="text-sm text-gray-800">
+                                            {{ \Carbon\Carbon::parse($reservation->reservation_date)->translatedFormat('d M Y') }}
+                                        </p>
+                                        <p class="text-xs text-gray-500">{{ $reservation->created_at->format('H:i') }}</p>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        @php
+                                            $status = 'Menunggu Persetujuan';
+                                            $class = 'bg-amber-100 text-amber-800';
+
+                                            if (
+                                                $reservation->approval_level1_status === 'approved' &&
+                                                $reservation->approval_level2_status === 'approved'
+                                            ) {
+                                                $status = 'Disetujui';
+                                                $class = 'bg-green-100 text-green-800';
+                                            } elseif (
+                                                $reservation->approval_level1_status === 'rejected' ||
+                                                $reservation->approval_level2_status === 'rejected'
+                                            ) {
+                                                $status = 'Ditolak';
+                                                $class = 'bg-red-100 text-red-800';
+                                            }
+                                        @endphp
+                                        <span class="px-2 py-1 text-xs font-medium rounded-full {{ $class }}">
+                                            {{ $status }}
+                                        </span>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
+
                     </table>
                 </div>
             </div>
 
         </div>
     </main>
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('menuButton');
+            const mobileSidebar = document.getElementById('mobileSidebar');
+            const closeSidebar = document.getElementById('closeSidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const timePeriodSelect = document.getElementById('timePeriod');
+            const vehicleUsageCtx = document.getElementById('vehicleUsageChart').getContext('2d');
+
+            menuButton?.addEventListener('click', function() {
+                mobileSidebar.classList.remove('-translate-x-full');
+                sidebarOverlay.classList.remove('hidden');
+            });
+
+            closeSidebar?.addEventListener('click', function() {
+                mobileSidebar.classList.add('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+            });
+
+            sidebarOverlay?.addEventListener('click', function() {
+                mobileSidebar.classList.add('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+            });
+
+            let vehicleUsageChart = new Chart(vehicleUsageCtx, {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Vehicle Orders',
+                        data: [],
+                        backgroundColor: '#b45309',
+                        barPercentage: 0.6,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                drawBorder: false,
+                            },
+                            ticks: {
+                                precision: 0
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            function fetchChartData(period) {
+                fetch(`/dashboard/chart-data?period=${period}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        vehicleUsageChart.data.labels = data.labels;
+                        vehicleUsageChart.data.datasets[0].data = data.data;
+                        vehicleUsageChart.update();
+                    })
+                    .catch(error => {
+                        console.error('Error fetching chart data:', error);
+                    });
+            }
+
+            fetchChartData('week');
+
+            timePeriodSelect.addEventListener('change', function() {
+                const period = this.value;
+                fetchChartData(period);
+            });
+        });
+    </script>
 @endsection
