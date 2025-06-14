@@ -13,8 +13,8 @@ return [
 
     'roles_structure' => [
         'admin' => [
-            'reservations' => 'c,r,u,d',
-            'reports' => 'c,r',
+            'reservations' => 'c,r,d',
+            'reports' => 'r',
             'dashboard' => 'r',
         ],
         'approver_level1' => [
@@ -25,6 +25,7 @@ return [
         'approver_level2' => [
             'reservations' => 'r,u',
             'dashboard' => 'r',
+            'reports' => 'r',
         ],
     ],
 
