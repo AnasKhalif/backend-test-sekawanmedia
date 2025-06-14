@@ -5,14 +5,20 @@
             <i class="fas fa-bars text-xl"></i>
         </button>
 
-        <div class="flex items-center">
+        <div class="flex items-center ml-auto">
             <div class="relative">
                 <button class="flex items-center focus:outline-none">
                     <div
                         class="h-8 w-8 rounded-full bg-amber-500 flex items-center justify-center text-white font-semibold mr-2">
-                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                        @if (Auth::check())
+                            {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                        @endif
                     </div>
-                    <span class="hidden md:block text-sm font-medium text-gray-700">{{ Auth::user()->name }}</span>
+                    <span class="hidden md:block text-sm font-medium text-gray-700">
+                        @if (Auth::check())
+                            {{ Auth::user()->name }}
+                        @endif
+                    </span>
                 </button>
             </div>
         </div>
