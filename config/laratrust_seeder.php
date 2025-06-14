@@ -17,12 +17,12 @@ return [
             'reports' => 'r',
             'dashboard' => 'r',
         ],
-        'approver_level1' => [
+        'supervisor' => [
             'reservations' => 'r,u',
             'dashboard' => 'r',
             'reports' => 'r',
         ],
-        'approver_level2' => [
+        'manager' => [
             'reservations' => 'r,u',
             'dashboard' => 'r',
             'reports' => 'r',

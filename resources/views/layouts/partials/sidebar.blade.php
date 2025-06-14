@@ -13,25 +13,33 @@
     <nav class="flex-1 overflow-y-auto scrollbar-hide">
         <ul class="px-2 py-4 space-y-1">
             <li>
-                <a href="#" class="flex items-center px-4 py-3 rounded-md bg-amber-700 text-white">
+                <a href="{{ route('dashboard') }}"
+                    class="flex items-center px-4 py-3 rounded-md {{ request()->routeIs('dashboard') ? 'bg-amber-700 text-white' : 'text-gray-300 hover:bg-gray-700' }}">
                     <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
+            @role('admin')
+                <li>
+                    <a href="{{ route('admin.reservations.index') }}"
+                        class="flex items-center px-4 py-3 rounded-md {{ request()->routeIs('admin.reservations.*') ? 'bg-amber-700 text-white' : 'text-gray-300 hover:bg-gray-700' }}">
+                        <i class="fas fa-calendar-alt w-5 h-5 mr-3"></i>
+                        <span>Reservations</span>
+                    </a>
+                </li>
+            @endrole
+            @role(['supervisor', 'manager'])
+                <li>
+                    <a href="{{ route('approver.reservations.index') }}"
+                        class="flex items-center px-4 py-3 rounded-md {{ request()->routeIs('approver.reservations.*') ? 'bg-amber-700 text-white' : 'text-gray-300 hover:bg-gray-700' }}">
+                        <i class="fas fa-check-circle w-5 h-5 mr-3"></i>
+                        <span>Approvals</span>
+                    </a>
+                </li>
+            @endrole
             <li>
-                <a href="#" class="flex items-center px-4 py-3 rounded-md text-gray-300 hover:bg-gray-700">
-                    <i class="fas fa-calendar-alt w-5 h-5 mr-3"></i>
-                    <span>Reservations</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="flex items-center px-4 py-3 rounded-md text-gray-300 hover:bg-gray-700">
-                    <i class="fas fa-check-circle w-5 h-5 mr-3"></i>
-                    <span>Approvals</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="flex items-center px-4 py-3 rounded-md text-gray-300 hover:bg-gray-700">
+                <a href="{{ route('reports') }}"
+                    class="flex items-center px-4 py-3 rounded-md {{ request()->routeIs('reports') ? 'bg-amber-700 text-white' : 'text-gray-300 hover:bg-gray-700' }}">
                     <i class="fas fa-file-alt w-5 h-5 mr-3"></i>
                     <span>Reports</span>
                 </a>
@@ -67,27 +75,33 @@
     <nav class="flex-1 overflow-y-auto scrollbar-hide">
         <ul class="px-2 py-4 space-y-1">
             <li>
-                <a href="#" class="flex items-center px-4 py-3 rounded-md bg-amber-700 text-white">
+                <a href="{{ route('dashboard') }}"
+                    class="flex items-center px-4 py-3 rounded-md {{ request()->routeIs('dashboard') ? 'bg-amber-700 text-white' : 'text-gray-300 hover:bg-gray-700' }}">
                     <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="#" class="flex items-center px-4 py-3 rounded-md text-gray-300 hover:bg-gray-700">
-                    <i class="fas fa-calendar-alt w-5 h-5 mr-3"></i>
-                    <span>Reservations</span>
-                </a>
-            </li>
-            @role(['approver_level1', 'approver_level2'])
+            @role('admin')
                 <li>
-                    <a href="#" class="flex items-center px-4 py-3 rounded-md text-gray-300 hover:bg-gray-700">
+                    <a href="{{ route('admin.reservations.index') }}"
+                        class="flex items-center px-4 py-3 rounded-md {{ request()->routeIs('admin.reservations.*') ? 'bg-amber-700 text-white' : 'text-gray-300 hover:bg-gray-700' }}">
+                        <i class="fas fa-calendar-alt w-5 h-5 mr-3"></i>
+                        <span>Reservations</span>
+                    </a>
+                </li>
+            @endrole
+            @role(['supervisor', 'manager'])
+                <li>
+                    <a href="{{ route('approver.reservations.index') }}"
+                        class="flex items-center px-4 py-3 rounded-md {{ request()->routeIs('approver.reservations.*') ? 'bg-amber-700 text-white' : 'text-gray-300 hover:bg-gray-700' }}">
                         <i class="fas fa-check-circle w-5 h-5 mr-3"></i>
                         <span>Approvals</span>
                     </a>
                 </li>
             @endrole
             <li>
-                <a href="#" class="flex items-center px-4 py-3 rounded-md text-gray-300 hover:bg-gray-700">
+                <a href="{{ route('reports') }}"
+                    class="flex items-center px-4 py-3 rounded-md {{ request()->routeIs('reports') ? 'bg-amber-700 text-white' : 'text-gray-300 hover:bg-gray-700' }}">
                     <i class="fas fa-file-alt w-5 h-5 mr-3"></i>
                     <span>Reports</span>
                 </a>

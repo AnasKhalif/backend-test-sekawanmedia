@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
+    <link rel="icon" type="image/png" href="{{ asset('assets/image/truk.png') }}">
     @vite('resources/css/app.css')
     @include('layouts.partials.link')
 </head>
@@ -22,7 +23,7 @@
             @yield('content')
         </div>
     </div>
-    @include('layouts.partials.script')
+    @yield('scripts')
 </body>
 
 </html>
