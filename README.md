@@ -1,61 +1,176 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Vehicle Reservation System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Backend application for a nickel mining company's vehicle ordering system, which includes tiered approval, reporting and vehicle monitoring features.
 
-## About Laravel
+## Technologies Used
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   **Laravel** v12.x - Framework PHP
+-   **Tailwind CSS** - Styling frontend
+-   **MySQL** - Database
+-   **PHP** v8.2+
+-   **Laravel Excel** - export laporan Excel
+-   **Laratrust** - Manajemen Role dan Permission
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Prerequisites
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Before you begin, ensure you have met the following requirements:
 
-## Learning Laravel
+-   PHP (v8.3)
+-   Composer (v2.8.6)
+-   MySQL Database
+-   Node.js (v22.14.0)
+-   npm (v10.9.2)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Setup and Installation
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Clone the repository:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+git clone https://github.com/AnasKhalif/backend-test-sekawanmedia.git
+cd backend-test-sekawanmedia
+```
 
-## Laravel Sponsors
+2. Install dependencies:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+composer install
+```
 
-### Premium Partners
+```bash
+npm install
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+3. Set up your environment variables:
 
-## Contributing
+```bash
+cp .env.example .env
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan key:generate
+```
 
-## Code of Conduct
+4. Set up the database:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+php artisan migrate --seed
+```
 
-## Security Vulnerabilities
+5. Run the development server:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan serve
+```
 
-## License
+6. Run Vite dev server (for Tailwind CSS + JS changes):
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+npm run dev
+```
+
+7. Start the development server:
+
+```bash
+The server should now be running on `http://127.0.0.1:8000`.
+```
+
+## Demo Login
+
+Use the following accounts to try the app:
+
+| Role       | Email               | Password |
+| ---------- | ------------------- | -------- |
+| Admin      | admin@app.test      | password |
+| Supervisor | supervisor@app.test | password |
+| Manager    | manager@app.test    | password |
+
+---
+
+## How to Use the Application
+
+### 1. Login
+
+Login to the application using one of the provided accounts above according to your role:
+
+-   **Admin**: Create vehicle reservations
+-   **Supervisor**: Approve reservations (Level 1)
+-   **Manager**: Approve reservations (Level 2)
+
+After logging in, you will be directed to the **Dashboard**, which displays vehicle usage summaries and charts.
+
+---
+
+### 2. Sidebar Navigation
+
+The sidebar includes the following menu:
+
+-   **Dashboard**: View vehicle usage analytics
+-   **Reservations**: Manage vehicle bookings (Admin only)
+-   **Approvals**: Approval panel (Supervisor and Manager only)
+-   **Reports**: Export reservation reports
+-   **Logout**: Sign out of the application
+
+---
+
+### 3. Reservations Page (Admin Role)
+
+On this page, Admins can:
+
+-   View all vehicle reservation records
+-   Monitor approval statuses from Supervisors and Managers
+-   Create a new reservation by clicking **"Add Reservation"**
+-   Edit or delete existing reservations
+
+**Displayed information includes:**
+
+-   Reservation ID
+-   Vehicle
+-   Driver
+-   Date
+-   Purpose
+-   Supervisor Status
+-   Manager Status
+-   Actions (Edit/Delete)
+
+**Steps to Create a Reservation:**
+
+1. Click the **"Add Reservation"** button.
+2. Fill out the reservation form with:
+    - Selected vehicle
+    - Assigned driver
+    - Date and purpose
+    - Assigned supervisor and manager for approval
+3. Once submitted, the reservation will appear with status **Pending**.
+
+---
+
+### 4. Approvals Page (Supervisor / Manager Roles)
+
+If you're logged in as a **Supervisor** or **Manager**, you'll see the **Approvals** menu in the sidebar.
+
+On the **Approval Panel**, you can:
+
+-   View pending reservation requests assigned to your role
+-   Approve requests by clicking the **Approve** button, then **Submit**
+-   See the current status: `Pending` or `Approved`
+
+If your role has already approved a request, the action column will show **"Already processed"**.
+
+---
+
+### 5. Reports Page
+
+On the **Reports** page:
+
+-   View filtered reservation history by date
+-   Click **Export to Excel** to download the report as an `.xlsx` file
+
+---
+
+### 6. Logout
+
+To log out of the application:
+
+-   Click **Logout** at the bottom of the sidebar
+
+---
