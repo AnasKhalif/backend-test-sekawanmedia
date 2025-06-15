@@ -178,3 +178,9 @@ To log out of the application:
 -   Click **Logout** at the bottom of the sidebar
 
 ---
+
+-   ✅ **Physical Data Model (ERD)**  
+    [📄 View Physical Data Model](https://github.com/AnasKhalif/backend-test-sekawanmedia/blob/main/physical%20data.jpeg)
+
+-   ✅ **Activity Diagram (UML)**  
+    [📄 View Activity Diagram for Vehicle Reservation](https://github.com/AnasKhalif/backend-test-sekawanmedia/blob/main/uml-diagram.pdf)
