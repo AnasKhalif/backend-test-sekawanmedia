@@ -27,7 +27,6 @@ Before you begin, ensure you have met the following requirements:
 
 ```bash
 git clone https://github.com/AnasKhalif/backend-test-sekawanmedia.git
-cd backend-test-sekawanmedia
 ```
 
 ```bash
