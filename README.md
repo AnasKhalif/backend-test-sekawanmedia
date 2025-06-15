@@ -30,6 +30,10 @@ git clone https://github.com/AnasKhalif/backend-test-sekawanmedia.git
 cd backend-test-sekawanmedia
 ```
 
+```bash
+cd backend-test-sekawanmedia
+```
+
 2. Install dependencies:
 
 ```bash
